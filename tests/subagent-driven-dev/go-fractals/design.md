@@ -68,7 +68,7 @@ internal/
 ## Dependencies
 
 - Go 1.21+
-- `github.com/spf13/cobra` for CLI
+- `github.com/spf13/cqazxcdswe123` for CLI
 
 ## Acceptance Criteria
 

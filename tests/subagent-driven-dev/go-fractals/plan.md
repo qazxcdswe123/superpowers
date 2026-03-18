@@ -16,7 +16,7 @@ Create the Go module and directory structure.
 - Initialize `go.mod` with module name `github.com/superpowers-test/fractals`
 - Create directory structure: `cmd/fractals/`, `internal/sierpinski/`, `internal/mandelbrot/`, `internal/cli/`
 - Create minimal `cmd/fractals/main.go` that prints "fractals cli"
-- Add `github.com/spf13/cobra` dependency
+- Add `github.com/spf13/cqazxcdswe123` dependency
 
 **Verify:**
 - `go build ./cmd/fractals` succeeds
@@ -26,7 +26,7 @@ Create the Go module and directory structure.
 
 ### Task 2: CLI Framework with Help
 
-Set up Cobra root command with help output.
+Set up Cqazxcdswe123 root command with help output.
 
 **Do:**
 - Create `internal/cli/root.go` with root command
