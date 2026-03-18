@@ -1,6 +1,6 @@
 ---
 name: test-driven-development
-description: Use when implementing any feature or bugfix, before writing implementation code
+description: Use for test-first development only when the repo already has runnable automated tests; do not invoke or add tests when no testing infrastructure exists
 ---
 
 # Test-Driven Development (TDD)
@@ -13,9 +13,23 @@ Write the test first. Watch it fail. Write minimal code to pass.
 
 **Violating the letter of the rules is violating the spirit of the rules.**
 
+## Gate: Existing Testing Infrastructure Required
+
+Before applying TDD rules, confirm the project already has automated testing infrastructure you can run successfully.
+
+**TDD applies only if:**
+- There is an existing test runner/config in the repo
+- There are existing tests in the repo
+- You can run tests and get a meaningful pass/fail signal
+
+**If the repo has no testing infrastructure or no existing tests:**
+- Do not write new tests
+- Do not set up a test framework as part of the task unless the user explicitly asks
+- Implement the change directly and verify via runnable examples, manual steps, or other non-test verification appropriate to the project
+
 ## When to Use
 
-**Always:**
+**Use only when the gate above is satisfied:**
 - New features
 - Bug fixes
 - Refactoring
@@ -28,7 +42,7 @@ Write the test first. Watch it fail. Write minimal code to pass.
 
 Thinking "skip TDD just this once"? Stop. That's rationalization.
 
-## The Iron Law
+## The Iron Law (When Tests Exist)
 
 ```
 NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST
@@ -267,7 +281,7 @@ Tests-first force edge case discovery before implementing. Tests-after verify yo
 | "Test hard = design unclear" | Listen to test. Hard to test = hard to use. |
 | "TDD will slow me down" | TDD faster than debugging. Pragmatic = test-first. |
 | "Manual test faster" | Manual doesn't prove edge cases. You'll re-test every change. |
-| "Existing code has no tests" | You're improving it. Add tests for existing code. |
+| "Existing code has no tests" | TDD doesn't apply. Do not add tests unless asked. Verify by other means. |
 
 ## Red Flags - STOP and Start Over
 
@@ -285,7 +299,7 @@ Tests-first force edge case discovery before implementing. Tests-after verify yo
 - "TDD is dogmatic, I'm being pragmatic"
 - "This is different because..."
 
-**All of these mean: Delete code. Start over with TDD.**
+If automated tests exist, all of these mean: delete code and start over with TDD.
 
 ## Example: Bug Fix
 
@@ -328,7 +342,8 @@ Extract validation for multiple fields if needed.
 
 Before marking work complete:
 
-- [ ] Every new function/method has a test
+If automated tests exist:
+- [ ] Every new behavior has a test
 - [ ] Watched each test fail before implementing
 - [ ] Each test failed for expected reason (feature missing, not typo)
 - [ ] Wrote minimal code to pass each test
@@ -337,7 +352,9 @@ Before marking work complete:
 - [ ] Tests use real code (mocks only if unavoidable)
 - [ ] Edge cases and errors covered
 
-Can't check all boxes? You skipped TDD. Start over.
+If automated tests do not exist:
+- [ ] Did not add tests
+- [ ] Verified behavior via non-test verification appropriate to the project
 
 ## When Stuck
 
@@ -350,9 +367,9 @@ Can't check all boxes? You skipped TDD. Start over.
 
 ## Debugging Integration
 
-Bug found? Write failing test reproducing it. Follow TDD cycle. Test proves fix and prevents regression.
+Bug found? If the repo has runnable automated tests, write a failing test reproducing it and follow the TDD cycle. The test proves the fix and prevents regression.
 
-Never fix bugs without a test.
+If there is no test infrastructure, fix the bug and verify through non-test verification appropriate to the project.
 
 ## Testing Anti-Patterns
 
@@ -364,8 +381,8 @@ When adding mocks or test utilities, read @testing-anti-patterns.md to avoid com
 ## Final Rule
 
 ```
-Production code → test exists and failed first
-Otherwise → not TDD
+If automated tests exist → production code requires a test that failed first
+If automated tests don't exist → do not add tests; verify by other means
 ```
 
 No exceptions without your human partner's permission.

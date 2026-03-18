@@ -4,4 +4,6 @@ I need to add a new feature to validate email addresses. It should:
 - Check that there's a dot in the domain part
 - Return true/false
 
+This repo already has a working automated test setup with existing tests.
+
 Can you implement this?
